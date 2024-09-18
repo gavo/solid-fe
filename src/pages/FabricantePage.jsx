@@ -38,7 +38,7 @@ const FabricantePage = () => {
         <thead>
           <tr>
             <th>Nro</th>
-            <th>Nombre</th>
+            <th className="full-width">Nombre</th>
           </tr>
         </thead>
         <tbody>
