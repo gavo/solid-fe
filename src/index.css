@@ -27,6 +27,10 @@ h1 {
   text-align: center;
 }
 
+.big-container {
+  text-align: center;
+}
+
 header {
   background-color: #242424;
   padding: 1em;
