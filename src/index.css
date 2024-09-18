@@ -82,6 +82,12 @@ td {
   padding: 4px 8px;
 }
 
+.active {
+  color: white;
+  background-color: #292d26 !important;
+  text-decoration: underline !important;
+}
+
 .menu > li > a:hover {
   background-color: #373e32;
 }
