@@ -6,18 +6,22 @@ import ProductsPage from "./pages/ProductsPage";
 import FabricantePage from "./pages/FabricantePage";
 import ProveedorPage from "./pages/ProveedorPage";
 import GrupoProductoPage from "./pages/GrupoProductoPage";
+import Footer from "./components/Footer";
 
 function App() {
   return (
     <>
       <NavBar />
-      <Routes>
-        <Route path="/" element={<FrontPage />} />
-        <Route path="/productos" element={<ProductsPage />} />
-        <Route path="/fabricantes" element={<FabricantePage />} />
-        <Route path="/proveedores" element={<ProveedorPage />} />
-        <Route path="/grupo-productos" element={<GrupoProductoPage />} />
-      </Routes>
+      <div className="content">
+        <Routes>
+          <Route path="/" element={<FrontPage />} />
+          <Route path="/productos" element={<ProductsPage />} />
+          <Route path="/fabricantes" element={<FabricantePage />} />
+          <Route path="/proveedores" element={<ProveedorPage />} />
+          <Route path="/grupo-productos" element={<GrupoProductoPage />} />
+        </Routes>
+      </div>
+      <Footer />
     </>
   );
 }

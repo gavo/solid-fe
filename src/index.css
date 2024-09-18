@@ -18,7 +18,7 @@ body {
 }
 
 h1 {
-  font-size: 3.2em;
+  font-size: 1.5em;
   line-height: 1.1;
   text-align: center;
 }
@@ -33,6 +33,30 @@ header {
   position: fixed;
   top: 0;
   width: 100%;
+}
+
+footer {
+  background-color: #242424;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+}
+
+table {
+  margin-top: 12px;
+}
+
+th {
+  background-color: #242424;
+  color: wheat;
+  border: 0.5px gray solid;
+  padding: 12px;
+}
+
+td {
+  border: 0.5px gray solid;
+  padding: 6px;
 }
 
 .menu {
@@ -59,6 +83,35 @@ header {
 }
 
 .menu > li > a:hover {
+  background-color: #373e32;
+}
+
+.content {
+  margin: 100px auto 50px;
+  max-width: 960px;
+  padding: 8px;
   color: #242424;
-  background-color: #7bc852;
+}
+
+.content > img {
+  display: block;
+  margin: auto;
+}
+
+input {
+  padding: 6px;
+  margin-right: 4px;
+}
+
+button {
+  padding: 6px;
+  cursor: pointer;
+}
+
+.column-name {
+  min-width: 200px;
+}
+
+.full-width {
+  width: 100%;
 }
