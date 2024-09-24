@@ -3,9 +3,9 @@
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light dark;
+  color-scheme: light;
   color: rgba(255, 255, 255, 0.87);
-  background-color: antiquewhite;
+  background-color: rgb(253, 252, 248);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -21,6 +21,23 @@ h1 {
   font-size: 1.5em;
   line-height: 1.1;
   text-align: center;
+}
+
+input,
+select,
+option {
+  padding: 6px;
+  margin-right: 4px;
+  width: 200px;
+  box-sizing: border-box;
+}
+
+input[type="button"] {
+  margin: 16px;
+  padding: 8px;
+  background-color: #373e32;
+  color: white;
+  cursor: pointer;
 }
 
 .container {
@@ -47,20 +64,31 @@ footer {
   text-align: center;
 }
 
-table {
+table,
+th,
+td {
   margin-top: 12px;
+  border-spacing: 0;
+  border-collapse: collapse;
+  border: 1px darkgray solid;
 }
 
 th {
   background-color: #242424;
-  color: wheat;
-  border: 0.5px gray solid;
+  color: rgb(228, 221, 210);
   padding: 12px;
 }
 
 td {
-  border: 0.5px gray solid;
   padding: 6px;
+}
+
+tr {
+  background-color: #dde0d5;
+}
+
+tr:nth-child(even) {
+  background-color: rgb(247, 243, 239);
 }
 
 .menu {
@@ -88,7 +116,7 @@ td {
 
 .active {
   color: white;
-  background-color: #292d26 !important;
+  background-color: #383b35 !important;
   text-decoration: underline !important;
 }
 
@@ -124,4 +152,39 @@ button {
 
 .full-width {
   width: 100%;
+}
+
+.modal {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  background: #242424dd;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-product {
+  position: absolute;
+  background-color: antiquewhite;
+  padding: 16px;
+  border-radius: 4px;
+}
+
+.form-row {
+  padding: 2px;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  gap: 8px;
+}
+
+.close-icon {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  cursor: pointer;
 }
