@@ -1,63 +1,106 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import FormProduct from "../components/FormProduct";
 
 const urlBase = "http://localhost:8080/api/producto";
+const newProduct = {
+  id: 0,
+  nombre: "",
+  nombreExtranjero: "",
+  peso: 0,
+  codBarra: "",
+  um: "",
+  precioLista: 1,
+  grupoProducto: null,
+  proveedor: null,
+  fabricante: null,
+  alternante: null,
+};
+
 const ProductsPage = () => {
   const [productos, setProductos] = useState([]);
-  const [newF, setNewF] = useState(false);
+  const [select, setSelect] = useState(newProduct);
+  const [modal, setModal] = useState(false);
+  const [filter, setFilter] = useState("");
+  const [refresh, setRefresh] = useState(false);
 
   useEffect(() => {
     cargarProductos();
-  }, [newF]);
+  }, [refresh]);
 
   const cargarProductos = async () => {
     const resultado = await axios.get(urlBase);
-    setProductos(resultado.data);
+    setProductos([...resultado.data]);
+  };
+
+  const showFormProducto = (producto) => {
+    setSelect(producto);
+    setModal(true);
   };
 
   return (
     <div className="big-container">
       <h2>Lista de Productos</h2>
-
-      <button onClick={(evt) => console.log("Nuevo producto")}>Agregar</button>
+      <input
+        type="text"
+        placeholder="Filtrar nombre Producto"
+        value={filter}
+        onChange={(evt) => setFilter(evt.target.value)}
+      />
+      <button onClick={(evt) => showFormProducto(newProduct)}>Agregar</button>
       <table>
         <thead>
           <tr>
             <th>id</th>
-            <th className="">Nombre</th>
-            <th className="">Nombre Extranjero</th>
-            <th className="">Cod Barra</th>
-            <th className="">Precio Lista</th>
-            <th className="">Peso</th>
-            <th className="">UM</th>
-            <th className="">Fabricante</th>
-            <th className="">Proveedor</th>
-            <th className="">Alternante</th>
-            <th className="">Grupo</th>
+            <th>Nombre</th>
+            <th>Nombre Extranjero</th>
+            <th>Cod Barra</th>
+            <th>Precio Lista</th>
+            <th>Peso</th>
+            <th>UM</th>
+            <th>Fabricante</th>
+            <th>Proveedor</th>
+            <th>Alternante</th>
+            <th>Grupo</th>
+            <th>Editar</th>
           </tr>
         </thead>
         <tbody>
-          {productos.map((producto, key) => {
-            console.log(producto);
-
-            return (
-              <tr key={key}>
-                <td>{producto.id}</td>
-                <td className="">{producto.nombre}</td>
-                <td className="">{producto.nombreExtranjero}</td>
-                <td className="">{producto.codBarra}</td>
-                <td className="">{producto.precioLista}</td>
-                <td className="">{producto.peso}</td>
-                <td className="">{producto.um}</td>
-                <td className="">{producto.fabricante?.nombre}</td>
-                <td className="">{producto.proveedor?.nombre}</td>
-                <td className="">{producto.alternante?.nombre}</td>
-                <td className="">{producto.grupoProducto?.nombre}</td>
-              </tr>
-            );
-          })}
+          {productos
+            .filter((p) =>
+              p.nombre.toLowerCase().includes(filter.toLowerCase())
+            )
+            .map((producto, key) => {
+              return (
+                <tr key={key}>
+                  <td>{producto.id}</td>
+                  <td>{producto.nombre}</td>
+                  <td>{producto.nombreExtranjero}</td>
+                  <td>{producto.codBarra}</td>
+                  <td>{producto.precioLista}</td>
+                  <td>{producto.peso}</td>
+                  <td>{producto.um}</td>
+                  <td>{producto.fabricante?.nombre}</td>
+                  <td>{producto.proveedor?.nombre}</td>
+                  <td>{producto.alternante?.nombre}</td>
+                  <td>{producto.grupoProducto?.nombre}</td>
+                  <td>
+                    <button onClick={() => showFormProducto(producto)}>
+                      Editar
+                    </button>
+                  </td>
+                </tr>
+              );
+            })}
         </tbody>
       </table>
+      {modal && (
+        <FormProduct
+          setViewModal={setModal}
+          producto={select}
+          refresh={() => setRefresh((v) => !v)}
+        />
+      )}
     </div>
   );
 };

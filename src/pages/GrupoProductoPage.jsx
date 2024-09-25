@@ -95,7 +95,7 @@ const GrupoProductoPage = () => {
                     >
                       Editar
                     </button>
-                  </td>{" "}
+                  </td>
                 </tr>
               );
             })}
