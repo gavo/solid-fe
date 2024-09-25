@@ -23,6 +23,13 @@ h1 {
   text-align: center;
 }
 
+h3 {
+  font-size: 1.2em;
+  line-height: 1;
+  text-align: center;
+  padding: 0px 6px 6px 6px;
+}
+
 input,
 select,
 option {
@@ -32,14 +39,23 @@ option {
   box-sizing: border-box;
 }
 
-input[type="button"] {
-  margin: 16px;
+button,
+input[type="button"],
+input[type="submit"] {
   padding: 8px;
   background-color: #373e32;
+  font-weight: bold;
   color: white;
   cursor: pointer;
+  border-radius: 4px;
 }
 
+button:hover,
+input[type="button"]:hover,
+input[type="submit"]:hover {
+  background-color: #242424;
+  color: antiquewhite;
+}
 .container {
   text-align: center;
 }
@@ -167,7 +183,7 @@ button {
   align-items: center;
 }
 
-.form-product {
+.modal-children {
   position: absolute;
   background-color: antiquewhite;
   padding: 16px;
@@ -184,7 +200,26 @@ button {
 
 .close-icon {
   position: absolute;
-  top: 12px;
-  right: 12px;
+  top: 10px;
+  right: 10px;
+  margin-bottom: -16px;
+  margin-left: -16px;
   cursor: pointer;
+  width: 16px;
+}
+
+.form-simple-object {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+
+.parameter-simple-object {
+  display: flex;
+  flex-direction: row;
+  gap: 6px;
+  justify-content: center;
+  align-items: center;
 }
