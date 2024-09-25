@@ -13,7 +13,6 @@ export const SimpleObjectForm = ({
 
   const save = (evt) => {
     saveValue(idObject, inputRef.current.value);
-    console.log("update");
     evt.preventDefault();
   };
 
