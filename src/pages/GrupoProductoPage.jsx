@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { SimpleObjectForm } from "../components/SimpleObjectForm";
 
-const urlBase = "http://localhost:8080/api/grupo-productos";
+const urlBase = "http://localhost:8080/api/grupo-producto";
 const newGrupoProducto = { id: 0, nombre: "" };
 
 const GrupoProductoPage = () => {

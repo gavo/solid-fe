@@ -67,7 +67,7 @@ const FormProduct = ({ setViewModal, producto, refresh }) => {
   };
 
   const loadGrupos = async () => {
-    const response = await axios.get(urlBase + "grupo-productos");
+    const response = await axios.get(urlBase + "grupo-producto");
     setGrupos([
       { label: "", value: 0 },
       ...response.data
