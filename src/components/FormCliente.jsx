@@ -13,43 +13,73 @@ const FormCliente = ({ setViewModal, cliente, refresh }) => {
   );
   const [email, setEmail] = useState(cliente?.email || "");
 
+  function validateEmail(email) {
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return emailRegex.test(email);
+  }
+
+  const dataIsValid = () => {
+    if (nombre.length <= 0) {
+      alert("Debe Indicar un Nombre");
+      const inputNombre = document.getElementById("form-cliente-nombre");
+      inputNombre.focus();
+    }
+    if (code.length <= 0) {
+      alert("Debe indicar un Codigo");
+      const inputCode = document.getElementById("form-cliente-code");
+      inputCode.focus();
+    }
+    if (documento.length <= 0) {
+      alert("Debe indicar un numero de documento");
+      const inputDocumento = document.getElementById("form-cliente-documento");
+      inputDocumento.focus();
+    }
+    if (!validateEmail(email)) {
+      alert("Debe indicar un correo electrónico valido");
+      const inputEmail = document.getElementById("form-cliente-email");
+      inputEmail.focus();
+    }
+    return true;
+  };
+
   const actionSubmit = async (evt) => {
     evt.preventDefault();
+    if (dataIsValid()) {
+      const newCliente = {
+        id: cliente?.id || undefined,
+        nombre,
+        code,
+        documento,
+        tipoDocumento,
+        email,
+      };
 
-    const newCliente = {
-      id: cliente?.id || undefined,
-      nombre,
-      code,
-      documento,
-      tipoDocumento,
-      email,
-    };
+      if (cliente.id === 0) {
+        await axios
+          .post(urlBase, newCliente)
+          .then((msj) => {
+            alert("cliente Registrado Exitosamente");
+            setViewModal(false);
+          })
+          .catch((error) => {
+            alert(error.response.data);
+          });
+      } else {
+        await axios
+          .put(urlBase + "/" + cliente.id, newCliente)
+          .then((msj) => {
+            alert("cliente Actualizado Exitosamente");
+            setViewModal(false);
+          })
+          .catch((error) => {
+            console.log(error);
 
-    if (cliente.id === 0) {
-      await axios
-        .post(urlBase, newCliente)
-        .then((msj) => {
-          alert("cliente Registrado Exitosamente");
-          setViewModal(false);
-        })
-        .catch((error) => {
-          alert(error.response.data);
-        });
-    } else {
-      await axios
-        .put(urlBase + "/" + cliente.id, newCliente)
-        .then((msj) => {
-          alert("cliente Actualizado Exitosamente");
-          setViewModal(false);
-        })
-        .catch((error) => {
-          console.log(error);
-
-          alert(error.response.data);
-        });
+            alert(error.response.data);
+          });
+      }
+      refresh();
+      setViewModal(false);
     }
-    refresh();
-    setViewModal(false);
   };
 
   return (
@@ -64,29 +94,31 @@ const FormCliente = ({ setViewModal, cliente, refresh }) => {
         <h3>{cliente.id === 0 ? "Registrar" : "Actualizar"} cliente</h3>
         <form className="form-generic" onSubmit={(evt) => actionSubmit(evt)}>
           <div className="form-row">
-            <label htmlFor="code">Código: </label>
+            <label htmlFor="form-cliente-code">Código: </label>
             <input
               type="text"
-              id="code"
+              id="form-cliente-code"
               placeholder="Código"
               value={code}
               onChange={(evt) => setCode(evt.target.value)}
             />
           </div>
           <div className="form-row">
-            <label htmlFor="nombre">Nombre: </label>
+            <label htmlFor="form-cliente-nombre">Nombre: </label>
             <input
               type="text"
-              id="nombre"
+              id="form-cliente-nombre"
               placeholder="Nombre"
               value={nombre}
               onChange={(evt) => setNombre(evt.target.value)}
             />
           </div>
           <div className="form-row">
-            <label htmlFor="tipo-documento">Tipo de Documento</label>
+            <label htmlFor="form-cliente-tipo-documento">
+              Tipo de Documento
+            </label>
             <select
-              id="tipo-documento"
+              id="form-cliente-tipo-documento"
               value={tipoDocumento}
               onChange={(evt) => setTipoDocumento(evt.target.value)}
             >
@@ -95,20 +127,20 @@ const FormCliente = ({ setViewModal, cliente, refresh }) => {
             </select>
           </div>
           <div className="form-row">
-            <label htmlFor="documento">documento</label>
+            <label htmlFor="form-cliente-documento">documento</label>
             <input
               type="text"
-              id="documento"
+              id="form-cliente-documento"
               placeholder="documento"
               value={documento}
               onChange={(evt) => setDocumento(evt.target.value)}
             />
           </div>
           <div className="form-row">
-            <label htmlFor="email">Correo Electrónico</label>
+            <label htmlFor="form-cliente-email">Correo Electrónico</label>
             <input
               type="email"
-              id="email"
+              id="form-cliente-email"
               placeholder="email"
               autoComplete="off"
               value={email}
@@ -117,6 +149,7 @@ const FormCliente = ({ setViewModal, cliente, refresh }) => {
           </div>
           <input
             type="submit"
+            id="form-cliente-submit"
             value={cliente.id === 0 ? "Registrar" : "Actualizar"}
             className="mt-8"
           />

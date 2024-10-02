@@ -6,28 +6,44 @@ const NavBar = () => {
     <header>
       <ul className="menu">
         <li>
-          <NavLink to="/">Home</NavLink>
+          <NavLink to="/" id="nav-home">
+            Home
+          </NavLink>
         </li>
         <li>
-          <NavLink to="/venta">Venta</NavLink>
+          <NavLink to="/venta" id="nav-venta">
+            Venta
+          </NavLink>
         </li>
         <li>
-          <NavLink to="/fabricantes">Fabricantes</NavLink>
+          <NavLink to="/fabricantes" id="nav-fabricante">
+            Fabricantes
+          </NavLink>
         </li>
         <li>
-          <NavLink to="/proveedores">Proveedores</NavLink>
+          <NavLink to="/proveedores" id="nav-proveedor">
+            Proveedores
+          </NavLink>
         </li>
         <li>
-          <NavLink to="/productos">Productos</NavLink>
+          <NavLink to="/productos" id="nav-producto">
+            Productos
+          </NavLink>
         </li>
         <li>
-          <NavLink to="/servicios">Servicios</NavLink>
+          <NavLink to="/servicios" id="nav-servicio">
+            Servicios
+          </NavLink>
         </li>
         <li>
-          <NavLink to="/grupo-productos">Grupo de Productos</NavLink>
+          <NavLink to="/grupo-productos" id="nav-grupo-producto">
+            Grupo de Productos
+          </NavLink>
         </li>
         <li>
-          <NavLink to="/clientes">Clientes</NavLink>
+          <NavLink to="/clientes" id="nav-cliente">
+            Clientes
+          </NavLink>
         </li>
       </ul>
     </header>

@@ -33,7 +33,12 @@ const ClientesPage = () => {
         onChange={(evt) => setFilter(evt.target.value)}
         id="filter-cliente"
       />
-      <button onClick={() => showFormCliente(newCliente)}>Agregar</button>
+      <button
+        onClick={() => showFormCliente(newCliente)}
+        id="btn-cliente-page-add"
+      >
+        Agregar
+      </button>
       <table>
         <thead>
           <tr>
