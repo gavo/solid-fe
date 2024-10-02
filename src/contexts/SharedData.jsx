@@ -10,7 +10,7 @@ const SharedDataProvider = ({ children }) => {
 
   return (
     <DataContext.Provider
-      value={[
+      value={{
         productos,
         setProductos,
         servicios,
@@ -19,7 +19,7 @@ const SharedDataProvider = ({ children }) => {
         setTotal,
         cliente,
         setCliente,
-      ]}
+      }}
     >
       {children}
     </DataContext.Provider>
