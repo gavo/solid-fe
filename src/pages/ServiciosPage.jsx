@@ -81,7 +81,7 @@ const ServicioPage = () => {
               return (
                 <tr key={key}>
                   <td>{servicio.id}</td>
-                  <td>{"codigo"}</td>
+                  <td>{servicio.codigo}</td>
                   <td className="column-name full-width">{servicio.nombre}</td>
                   <td className="bold">{servicio.precio}</td>
                   <td>
