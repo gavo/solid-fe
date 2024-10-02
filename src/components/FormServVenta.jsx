@@ -1,15 +1,16 @@
 import React, { useState } from "react";
 import close from "../assets/close.png";
 
-const FormProdVenta = ({ setViewModal, producto }) => {
-  const [cantidad, setCantidad] = useState(producto?.cantidad || "");
-  const [descuento, setDescuento] = useState(producto?.descuento || 0);
+const FormServVenta = ({ setViewModal, servicio }) => {
+  const [observaciones, setObservaciones] = useState(
+    servicio?.observaciones || ""
+  );
+  const [descuento, setDescuento] = useState(servicio?.descuento || 0);
 
   const handleSubmit = (evt) => {
-    producto.cantidad = cantidad;
-    producto.descuento = descuento;
-
     evt.preventDefault();
+    servicio.descuento = descuento;
+    servicio.observaciones = observaciones;
     setViewModal(false);
   };
 
@@ -22,7 +23,7 @@ const FormProdVenta = ({ setViewModal, producto }) => {
           className="close-icon"
           onClick={() => setViewModal(false)}
         />
-        <h3>Producto a Vender</h3>
+        <h3>Servicio a Realizar</h3>
         <form className="form-generic" onSubmit={handleSubmit}>
           <div className="form-row">
             <label htmlFor="nombre">Nombre: </label>
@@ -30,7 +31,7 @@ const FormProdVenta = ({ setViewModal, producto }) => {
               type="text"
               id="nombre"
               placeholder="Nombre"
-              value={producto?.producto?.nombre}
+              value={servicio?.servicio?.nombre}
               disabled={true}
             />
           </div>
@@ -40,19 +41,21 @@ const FormProdVenta = ({ setViewModal, producto }) => {
               type="number"
               id="precio"
               placeholder="Precio"
-              value={producto?.precio}
+              value={servicio?.precio}
               disabled={true}
             />
           </div>
           <div className="form-row">
-            <label htmlFor="cantidad">Cantidad: </label>
-            <input
-              type="text"
-              id="cantidad"
-              placeholder="Código"
-              value={cantidad}
-              onChange={(evt) => setCantidad(evt.target.value)}
-            />
+            <label htmlFor="observaciones">Observaciones: </label>
+            <textarea
+              id="observaciones"
+              name="observaciones"
+              rows="4"
+              cols="24"
+              placeholder="Observaciones"
+              value={observaciones}
+              onChange={(evt) => setObservaciones(evt.target.value)}
+            ></textarea>
           </div>
           <div className="form-row">
             <label htmlFor="descuento">Descuento</label>
@@ -71,4 +74,4 @@ const FormProdVenta = ({ setViewModal, producto }) => {
   );
 };
 
-export default FormProdVenta;
+export default FormServVenta;

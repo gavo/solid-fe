@@ -29,13 +29,14 @@ h3 {
   text-align: center;
   padding: 0px 6px 6px 6px;
 }
-
+textarea,
 input,
 select,
 option {
   padding: 6px;
   margin-right: 4px;
   width: 200px;
+  max-width: 200px;
   box-sizing: border-box;
 }
 

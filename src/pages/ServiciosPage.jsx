@@ -1,6 +1,8 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import FormServicio from "../components/FormServicio";
+import { DataContext } from "../contexts/SharedData";
+import cartIcon from "../assets/cart-icon.png";
 
 const urlBase = "http://localhost:8080/api/servicio";
 const newServicio = { id: 0, nombre: "", precio: 0, codigo: "" };
@@ -11,6 +13,8 @@ const ServicioPage = () => {
   const [modal, setModal] = useState(false);
   const [filter, setFilter] = useState("");
   const [refresh, setRefresh] = useState(false);
+
+  const data = useContext(DataContext);
 
   useEffect(() => {
     cargarServicios();
@@ -26,6 +30,26 @@ const ServicioPage = () => {
     setModal(true);
   };
 
+  const isProdForSale = (selected) => {
+    if (data.servicios.length == 0) return true;
+    return (
+      data.servicios.reduce(
+        (resp, current) => resp + (selected.id === current.servicio.id ? 1 : 0),
+        0
+      ) === 0
+    );
+  };
+
+  const addToCart = (s) => {
+    const toBuy = {
+      observaciones: "",
+      precio: s.precio,
+      descuento: 0,
+      servicio: s,
+    };
+    data.setServicios((e) => [...e, toBuy]);
+  };
+
   return (
     <div className="container">
       <h2>Lista de Servicios</h2>
@@ -34,6 +58,7 @@ const ServicioPage = () => {
         placeholder="Filtrar nombre Servicios"
         value={filter}
         onChange={(evt) => setFilter(evt.target.value)}
+        id="filter-servicio"
       />
       <button onClick={() => showFormServicio(newServicio)}>Agregar</button>
       <table>
@@ -44,6 +69,7 @@ const ServicioPage = () => {
             <th className="full-width">Nombre</th>
             <th>Precio</th>
             <th>Editar</th>
+            <th>Carro</th>
           </tr>
         </thead>
         <tbody>
@@ -57,11 +83,20 @@ const ServicioPage = () => {
                   <td>{servicio.id}</td>
                   <td>{"codigo"}</td>
                   <td className="column-name full-width">{servicio.nombre}</td>
-                  <td>{servicio.precio}</td>
+                  <td className="bold">{servicio.precio}</td>
                   <td>
                     <button onClick={() => showFormServicio(servicio)}>
                       Editar
                     </button>
+                  </td>
+                  <td>
+                    {isProdForSale(servicio) ? (
+                      <button onClick={() => addToCart(servicio)}>
+                        <img src={cartIcon} alt="Icon" />
+                      </button>
+                    ) : (
+                      <></>
+                    )}
                   </td>
                 </tr>
               );
