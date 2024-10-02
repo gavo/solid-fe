@@ -1,6 +1,8 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import FormProduct from "../components/FormProduct";
+import { DataContext } from "../contexts/SharedData";
+import cartIcon from "../assets/cart-icon.png";
 
 const urlBase = "http://localhost:8080/api/producto";
 const newProduct = {
@@ -23,6 +25,7 @@ const ProductsPage = () => {
   const [modal, setModal] = useState(false);
   const [filter, setFilter] = useState("");
   const [refresh, setRefresh] = useState(false);
+  const data = useContext(DataContext);
 
   useEffect(() => {
     cargarProductos();
@@ -38,6 +41,21 @@ const ProductsPage = () => {
     setModal(true);
   };
 
+  const isProdForSale = (selected) => {
+    if (data.productos.length == 0) return true;
+    return (
+      data.productos.reduce(
+        (resp, current) => resp + (selected.id === current.producto.id ? 1 : 0),
+        0
+      ) === 0
+    );
+  };
+
+  const addToCart = (p) => {
+    const toBuy = { cantidad: 1, precio: p.precio, descuento: 0, producto: p };
+    data.setProductos((e) => [...e, toBuy]);
+  };
+
   return (
     <div className="big-container">
       <h2>Lista de Productos</h2>
@@ -46,23 +64,21 @@ const ProductsPage = () => {
         placeholder="Filtrar nombre Producto"
         value={filter}
         onChange={(evt) => setFilter(evt.target.value)}
+        id="filter-producto"
       />
       <button onClick={(evt) => showFormProducto(newProduct)}>Agregar</button>
       <table>
         <thead>
           <tr>
-            <th>id</th>
-            <th>Nombre</th>
-            <th>Nombre Extranjero</th>
             <th>Cod Barra</th>
-            <th>Precio</th>
-            <th>Peso</th>
-            <th>UM</th>
+            <th className="full-width">Nombre</th>
+            <th>Nombre Extranjero</th>
             <th>Fabricante</th>
             <th>Proveedor</th>
-            <th>Alternante</th>
-            <th>Grupo</th>
+            <th>Peso</th>
+            <th>Precio</th>
             <th>Editar</th>
+            <th>Carro</th>
           </tr>
         </thead>
         <tbody>
@@ -73,21 +89,26 @@ const ProductsPage = () => {
             .map((producto, key) => {
               return (
                 <tr key={key}>
-                  <td>{producto.id}</td>
+                  <td>{producto.codBarra}</td>
                   <td>{producto.nombre}</td>
                   <td>{producto.nombreExtranjero}</td>
-                  <td>{producto.codBarra}</td>
-                  <td>{producto.precio}</td>
-                  <td>{producto.peso}</td>
-                  <td>{producto.um}</td>
                   <td>{producto.fabricante?.nombre}</td>
                   <td>{producto.proveedor?.nombre}</td>
-                  <td>{producto.alternante?.nombre}</td>
-                  <td>{producto.grupoProducto?.nombre}</td>
+                  <td>{producto.peso + " " + producto.um}</td>
+                  <td className="bold">{producto.precio}</td>
                   <td>
                     <button onClick={() => showFormProducto(producto)}>
                       Editar
                     </button>
+                  </td>
+                  <td>
+                    {isProdForSale(producto) ? (
+                      <button onClick={() => addToCart(producto)}>
+                        <img src={cartIcon} alt="Icon" />
+                      </button>
+                    ) : (
+                      <></>
+                    )}
                   </td>
                 </tr>
               );
