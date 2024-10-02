@@ -70,6 +70,10 @@ const VentaPage = () => {
       .then((obj) => {
         console.log(obj);
         alert("Venta Realizada");
+        setServicios([]);
+        setProductos([]);
+        setClienteSelected(0);
+        setFacturado(false);
       })
       .catch((error) => {
         console.log(error);
@@ -164,112 +168,116 @@ const VentaPage = () => {
           </div>
         </>
       )}
-      <table>
-        <thead>
-          <tr>
-            <th>Nro</th>
-            <th className="full-width">Nombre Producto</th>
-            <th>Precio</th>
-            <th>Cantidad</th>
-            <th>Desc Tot</th>
-            <th>Total</th>
-            <th>Ajustar</th>
-            <th>Quitar</th>
-          </tr>
-        </thead>
-        <tbody>
-          {productos.map((p, key) => (
-            <tr key={key}>
-              <td>{key + 1}</td>
-              <td>{p.producto.nombre}</td>
-              <td>{p.precio}</td>
-              <td>{p.cantidad}</td>
-              <td>{p.descuento}</td>
-              <td className="bold">{p.precio * p.cantidad - p.descuento}</td>
-              <td>
-                <button onClick={() => showFormProdVenta(p)}>Editar</button>
-              </td>
-              <td>
-                <button onClick={() => removeProductFromCart(p)}>
-                  <img src={remove} alt="remove" />
-                </button>
-              </td>
+      {productos.length > 0 && (
+        <table>
+          <thead>
+            <tr>
+              <th>Nro</th>
+              <th className="full-width">Nombre Producto</th>
+              <th>Precio</th>
+              <th>Cantidad</th>
+              <th>Desc Tot</th>
+              <th>Total</th>
+              <th>Ajustar</th>
+              <th>Quitar</th>
             </tr>
-          ))}
-        </tbody>
-        <tfoot>
-          <tr>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th scope="row">Sub Total</th>
-            <th>
-              {productos.reduce(
-                (acumulado, current) =>
-                  Number(acumulado) +
-                  Number(current.cantidad) * Number(current.precio) -
-                  Number(current.descuento),
-                0
-              )}
-            </th>
-            <th></th>
-            <th></th>
-          </tr>
-        </tfoot>
-      </table>
+          </thead>
+          <tbody>
+            {productos.map((p, key) => (
+              <tr key={key}>
+                <td>{key + 1}</td>
+                <td>{p.producto.nombre}</td>
+                <td>{p.precio}</td>
+                <td>{p.cantidad}</td>
+                <td>{p.descuento}</td>
+                <td className="bold">{p.precio * p.cantidad - p.descuento}</td>
+                <td>
+                  <button onClick={() => showFormProdVenta(p)}>Editar</button>
+                </td>
+                <td>
+                  <button onClick={() => removeProductFromCart(p)}>
+                    <img src={remove} alt="remove" />
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+          <tfoot>
+            <tr>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th scope="row">Sub Total</th>
+              <th>
+                {productos.reduce(
+                  (acumulado, current) =>
+                    Number(acumulado) +
+                    Number(current.cantidad) * Number(current.precio) -
+                    Number(current.descuento),
+                  0
+                )}
+              </th>
+              <th></th>
+              <th></th>
+            </tr>
+          </tfoot>
+        </table>
+      )}
 
-      <table>
-        <thead>
-          <tr>
-            <th>Nro</th>
-            <th className="full-width">Nombre Servicio</th>
-            <th>Precio</th>
-            <th>Descuento</th>
-            <th>Total</th>
-            <th>Ajustar</th>
-            <th>Quitar</th>
-          </tr>
-        </thead>
-        <tbody>
-          {servicios.map((s, key) => (
-            <tr key={key}>
-              <td>{key + 1}</td>
-              <td>{s.servicio.nombre}</td>
-              <td>{s.precio}</td>
-              <td>{s.descuento}</td>
-              <td>{s.precio - s.descuento}</td>
-              <td>
-                <button onClick={() => showFormServVenta(s)}>Editar</button>
-              </td>
-              <td>
-                <button onClick={() => removeServicioFromCart(s)}>
-                  <img src={remove} alt="remove" />
-                </button>
-              </td>
+      {servicios.length > 0 && (
+        <table>
+          <thead>
+            <tr>
+              <th>Nro</th>
+              <th className="full-width">Nombre Servicio</th>
+              <th>Precio</th>
+              <th>Descuento</th>
+              <th>Total</th>
+              <th>Ajustar</th>
+              <th>Quitar</th>
             </tr>
-          ))}
-        </tbody>
-        <tfoot>
-          <tr>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th scope="row">Sub Total</th>
-            <th>
-              {servicios.reduce(
-                (acumulado, current) =>
-                  Number(acumulado) +
-                  Number(current.precio) -
-                  Number(current.descuento),
-                0
-              )}
-            </th>
-            <th></th>
-            <th></th>
-          </tr>
-        </tfoot>
-      </table>
+          </thead>
+          <tbody>
+            {servicios.map((s, key) => (
+              <tr key={key}>
+                <td>{key + 1}</td>
+                <td>{s.servicio.nombre}</td>
+                <td>{s.precio}</td>
+                <td>{s.descuento}</td>
+                <td>{s.precio - s.descuento}</td>
+                <td>
+                  <button onClick={() => showFormServVenta(s)}>Editar</button>
+                </td>
+                <td>
+                  <button onClick={() => removeServicioFromCart(s)}>
+                    <img src={remove} alt="remove" />
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+          <tfoot>
+            <tr>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th scope="row">Sub Total</th>
+              <th>
+                {servicios.reduce(
+                  (acumulado, current) =>
+                    Number(acumulado) +
+                    Number(current.precio) -
+                    Number(current.descuento),
+                  0
+                )}
+              </th>
+              <th></th>
+              <th></th>
+            </tr>
+          </tfoot>
+        </table>
+      )}
       <button onClick={handleSaveVenta}>Realizar Venta</button>
       {showPF && <FormProdVenta setViewModal={setShowPF} producto={pvs} />}
       {showSF && <FormServVenta setViewModal={setShowSF} servicio={svs} />}
