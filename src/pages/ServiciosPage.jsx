@@ -91,7 +91,10 @@ const ServicioPage = () => {
                   </td>
                   <td>
                     {isProdForSale(servicio) ? (
-                      <button onClick={() => addToCart(servicio)}>
+                      <button
+                        onClick={() => addToCart(servicio)}
+                        id={"serv-cart-" + key}
+                      >
                         <img src={cartIcon} alt="Icon" />
                       </button>
                     ) : (

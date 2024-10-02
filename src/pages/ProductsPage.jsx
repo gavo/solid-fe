@@ -103,7 +103,10 @@ const ProductsPage = () => {
                   </td>
                   <td>
                     {isProdForSale(producto) ? (
-                      <button onClick={() => addToCart(producto)}>
+                      <button
+                        onClick={() => addToCart(producto)}
+                        id={"prod-cart-" + key}
+                      >
                         <img src={cartIcon} alt="Icon" />
                       </button>
                     ) : (

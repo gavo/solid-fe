@@ -85,11 +85,11 @@ const VentaPage = () => {
     <div className="container-flex">
       <h2>Procesar Venta</h2>
       <div className="container-row">
-        <label className="label-fixed" htmlFor="cliente">
+        <label className="label-fixed" htmlFor="form-venta-cliente">
           Cliente
         </label>
         <select
-          id="cliente"
+          id="form-venta-cliente"
           value={clienteSelected}
           onChange={handleChangeClient}
         >
@@ -130,13 +130,13 @@ const VentaPage = () => {
       </div>
 
       <div className="container-row">
-        <label htmlFor="factura" className="label-fixed">
+        <label htmlFor="form-venta-facturado" className="label-fixed">
           Con factura
         </label>
         <input
           type="checkbox"
           name=""
-          id="factura"
+          id="form-venta-facturado"
           checked={isFacturado}
           onChange={handleFacturado}
           style={{ width: 10, marginRight: 190 }}
@@ -282,6 +282,7 @@ const VentaPage = () => {
         onClick={handleSaveVenta}
         disabled={servicios.length == 0 && productos.length == 0}
         style={{ marginTop: 15, padding: 12, fontSize: 15 }}
+        id="form-venta-submit"
       >
         Realizar Venta
       </button>
