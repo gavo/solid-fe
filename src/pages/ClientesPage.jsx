@@ -1,9 +1,8 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
-import FormServicio from "../components/FormServicio";
+import React, { useContext, useEffect, useState } from "react";
 import FormCliente from "../components/FormCliente";
+import { DataContext } from "../contexts/SharedData";
 
-const urlBase = "http://localhost:8080/api/cliente";
 const newCliente = {
   id: 0,
   nombre: "",
@@ -14,20 +13,10 @@ const newCliente = {
 };
 
 const ClientesPage = () => {
-  const [clientes, setClientes] = useState([]);
+  const { clientes, reloadClientes } = useContext(DataContext);
   const [select, setSelect] = useState(newCliente);
   const [modal, setModal] = useState(false);
   const [filter, setFilter] = useState("");
-  const [refresh, setRefresh] = useState(false);
-
-  useEffect(() => {
-    cargarClientes();
-  }, [refresh]);
-
-  const cargarClientes = async () => {
-    const resultado = await axios.get(urlBase);
-    setClientes(resultado.data);
-  };
 
   const showFormCliente = (fabricante) => {
     setSelect(fabricante);
@@ -82,7 +71,7 @@ const ClientesPage = () => {
         <FormCliente
           cliente={select}
           setViewModal={setModal}
-          refresh={setRefresh}
+          refresh={reloadClientes}
         />
       )}
     </div>

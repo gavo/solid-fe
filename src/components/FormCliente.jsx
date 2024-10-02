@@ -36,8 +36,6 @@ const FormCliente = ({ setViewModal, cliente, refresh }) => {
           alert(error.response.data);
         });
     } else {
-      console.log(cliente);
-
       await axios
         .put(urlBase + "/" + cliente.id, newCliente)
         .then((msj) => {
