@@ -11,6 +11,7 @@ import ServiciosPage from "./pages/ServiciosPage";
 import ClientesPage from "./pages/ClientesPage";
 import ErrorPage from "./pages/ErrorPage";
 import SharedDataProvider from "./contexts/SharedData";
+import VentaPage from "./pages/VentaPage";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
             <Route path="/grupo-productos" element={<GrupoProductoPage />} />
             <Route path="/servicios" element={<ServiciosPage />} />
             <Route path="/clientes" element={<ClientesPage />} />
+            <Route path="/venta" element={<VentaPage />} />
             <Route path="*" element={<ErrorPage />} />
           </Routes>
         </div>
