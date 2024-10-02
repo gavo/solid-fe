@@ -278,7 +278,13 @@ const VentaPage = () => {
           </tfoot>
         </table>
       )}
-      <button onClick={handleSaveVenta}>Realizar Venta</button>
+      <button
+        onClick={handleSaveVenta}
+        disabled={servicios.length == 0 && productos.length == 0}
+        style={{ marginTop: 15, padding: 12, fontSize: 15 }}
+      >
+        Realizar Venta
+      </button>
       {showPF && <FormProdVenta setViewModal={setShowPF} producto={pvs} />}
       {showSF && <FormServVenta setViewModal={setShowSF} servicio={svs} />}
     </div>

@@ -58,6 +58,15 @@ input[type="submit"]:hover {
   background-color: #252323;
   color: antiquewhite;
 }
+
+button:disabled,
+input[type="button"]:disabled,
+input[type="submit"]:disabled {
+  background-color: #c1c1c1;
+  color: antiquewhite;
+  cursor: auto;
+}
+
 .container,
 .big-container {
   text-align: center;

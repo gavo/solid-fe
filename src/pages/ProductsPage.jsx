@@ -9,7 +9,7 @@ const newProduct = {
   id: 0,
   nombre: "",
   nombreExtranjero: "",
-  peso: 0,
+  peso: 1,
   codBarra: "",
   um: "",
   precio: 1,
