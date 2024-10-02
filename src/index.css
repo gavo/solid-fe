@@ -57,10 +57,7 @@ input[type="submit"]:hover {
   background-color: #252323;
   color: antiquewhite;
 }
-.container {
-  text-align: center;
-}
-
+.container,
 .big-container {
   text-align: center;
 }
@@ -193,6 +190,29 @@ button {
   background-color: antiquewhite;
   padding: 16px;
   border-radius: 4px;
+}
+
+.container-flex {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.container-row {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+}
+
+.label-fixed {
+  width: 150px;
+  text-align: end;
 }
 
 .form-generic {

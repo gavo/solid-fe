@@ -110,6 +110,7 @@ const FormCliente = ({ setViewModal, cliente, refresh }) => {
               type="email"
               id="email"
               placeholder="email"
+              autocomplete="off"
               value={email}
               onChange={(evt) => setEmail(evt.target.value)}
             />

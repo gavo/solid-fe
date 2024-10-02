@@ -60,6 +60,7 @@ const ProveedorPage = () => {
         placeholder="Filtrar nombre Proveedor"
         value={filter}
         onChange={(evt) => setFilter(evt.target.value)}
+        id="filter-proveedor"
       />
       <button onClick={(evt) => showFormProveedor(newProveedor)}>
         Agregar

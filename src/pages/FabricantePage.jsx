@@ -63,6 +63,7 @@ const FabricantePage = () => {
         type="text"
         placeholder="Filtrar nombre Fabricante"
         value={filter}
+        id="filter-fabricante"
         onChange={(evt) => setFilter(evt.target.value)}
       />
       <button onClick={() => showFormFabricante(newFabricante)}>Agregar</button>

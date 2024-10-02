@@ -65,6 +65,7 @@ const GrupoProductoPage = () => {
         placeholder="Filtrar Nombre de Grupo"
         value={filter}
         onChange={(evt) => setFilter(evt.target.value)}
+        id="filtro-grupo-productos"
       />
       <button onClick={(evt) => showFormGrupoProducto(newGrupoProducto)}>
         Agregar

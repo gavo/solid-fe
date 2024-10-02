@@ -31,6 +31,7 @@ const ClientesPage = () => {
         placeholder="Filtrar Nombre Cliente"
         value={filter}
         onChange={(evt) => setFilter(evt.target.value)}
+        id="filter-cliente"
       />
       <button onClick={() => showFormCliente(newCliente)}>Agregar</button>
       <table>
