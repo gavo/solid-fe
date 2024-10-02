@@ -7,6 +7,7 @@ import FabricantePage from "./pages/FabricantePage";
 import ProveedorPage from "./pages/ProveedorPage";
 import GrupoProductoPage from "./pages/GrupoProductoPage";
 import Footer from "./components/Footer";
+import ServiciosPage from "./pages/ServiciosPage";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/fabricantes" element={<FabricantePage />} />
           <Route path="/proveedores" element={<ProveedorPage />} />
           <Route path="/grupo-productos" element={<GrupoProductoPage />} />
+          <Route path="/servicios" element={<ServiciosPage />} />
         </Routes>
       </div>
       <Footer />

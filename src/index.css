@@ -199,6 +199,14 @@ button {
   align-items: end;
 }
 
+.form-servicio {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  justify-content: center;
+  align-items: end;
+}
+
 .form-row {
   padding: 2px;
   display: flex;
