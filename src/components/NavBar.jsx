@@ -23,6 +23,9 @@ const NavBar = () => {
         <li>
           <NavLink to="/grupo-productos">Grupo de Productos</NavLink>
         </li>
+        <li>
+          <NavLink to="/clientes">Clientes</NavLink>
+        </li>
       </ul>
     </header>
   );

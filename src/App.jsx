@@ -8,6 +8,7 @@ import ProveedorPage from "./pages/ProveedorPage";
 import GrupoProductoPage from "./pages/GrupoProductoPage";
 import Footer from "./components/Footer";
 import ServiciosPage from "./pages/ServiciosPage";
+import ClientesPage from "./pages/ClientesPage";
 import ErrorPage from "./pages/ErrorPage";
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
           <Route path="/proveedores" element={<ProveedorPage />} />
           <Route path="/grupo-productos" element={<GrupoProductoPage />} />
           <Route path="/servicios" element={<ServiciosPage />} />
+          <Route path="/clientes" element={<ClientesPage />} />
           <Route path="*" element={<ErrorPage />} />
         </Routes>
       </div>

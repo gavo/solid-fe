@@ -54,7 +54,7 @@ const FormServicio = ({ setViewModal, servicio, refresh }) => {
           onClick={() => setViewModal(false)}
         />
         <h3>{servicio.id === 0 ? "Registrar" : "Actualizar"} Servicio</h3>
-        <form className="form-producto" onSubmit={(evt) => actionSubmit(evt)}>
+        <form className="form-generic" onSubmit={(evt) => actionSubmit(evt)}>
           <div className="form-row">
             <label htmlFor="nombre">Nombre: </label>
             <input

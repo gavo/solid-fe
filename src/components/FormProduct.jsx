@@ -136,7 +136,7 @@ const FormProduct = ({ setViewModal, producto, refresh }) => {
           onClick={() => setViewModal(false)}
         />
         <h3>{producto.id === 0 ? "Registrar" : "Actualizar"} producto</h3>
-        <form className="form-producto" onSubmit={(evt) => actionSubmit(evt)}>
+        <form className="form-generic" onSubmit={(evt) => actionSubmit(evt)}>
           <div className="form-row">
             <label htmlFor="nombre">Nombre: </label>
             <input

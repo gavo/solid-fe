@@ -191,15 +191,7 @@ button {
   border-radius: 4px;
 }
 
-.form-producto {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  justify-content: center;
-  align-items: end;
-}
-
-.form-servicio {
+.form-generic {
   display: flex;
   flex-direction: column;
   gap: 4px;
