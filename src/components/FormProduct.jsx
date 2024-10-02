@@ -12,7 +12,7 @@ const FormProduct = ({ setViewModal, producto, refresh }) => {
   const [peso, setPeso] = useState(producto.peso);
   const [codBarra, setCodBarra] = useState(producto.codBarra);
   const [um, setUm] = useState(producto.um);
-  const [precioLista, setPrecioLista] = useState(producto.precioLista);
+  const [precio, setPrecio] = useState(producto.precio);
   const [productos, setProductos] = useState([]);
   const [relatedSelected, setRelatedSelected] = useState(
     producto.alternante?.id || 0
@@ -78,21 +78,15 @@ const FormProduct = ({ setViewModal, producto, refresh }) => {
 
   const actionSubmit = async (evt) => {
     evt.preventDefault();
-    console.log(
-      relatedSelected,
-      grupoSelected,
-      fabricanteSelected,
-      proveedorSelected
-    );
 
     const newProduct = {
-      id: producto.id,
+      id: producto?.id || undefined,
       nombre,
       nombreExtranjero,
       peso,
       codBarra,
       um,
-      precioLista,
+      precio,
       alternante: relatedSelected ? { id: relatedSelected } : undefined,
       grupoProducto: grupoSelected ? { id: grupoSelected } : undefined,
       proveedor: proveedorSelected
@@ -174,13 +168,13 @@ const FormProduct = ({ setViewModal, producto, refresh }) => {
             />
           </div>
           <div className="form-row">
-            <label htmlFor="precio">Precio Lista</label>
+            <label htmlFor="precio">Precio</label>
             <input
               type="number"
               id="precio"
-              placeholder="Precio Lista"
-              value={precioLista}
-              onChange={(evt) => setPrecioLista(evt.target.value)}
+              placeholder="Precio"
+              value={precio}
+              onChange={(evt) => setPrecio(evt.target.value)}
             />
           </div>
           <div className="form-row">

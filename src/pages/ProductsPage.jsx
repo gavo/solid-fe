@@ -10,7 +10,7 @@ const newProduct = {
   peso: 0,
   codBarra: "",
   um: "",
-  precioLista: 1,
+  precio: 1,
   grupoProducto: null,
   proveedor: null,
   fabricante: null,
@@ -55,7 +55,7 @@ const ProductsPage = () => {
             <th>Nombre</th>
             <th>Nombre Extranjero</th>
             <th>Cod Barra</th>
-            <th>Precio Lista</th>
+            <th>Precio</th>
             <th>Peso</th>
             <th>UM</th>
             <th>Fabricante</th>
@@ -77,7 +77,7 @@ const ProductsPage = () => {
                   <td>{producto.nombre}</td>
                   <td>{producto.nombreExtranjero}</td>
                   <td>{producto.codBarra}</td>
-                  <td>{producto.precioLista}</td>
+                  <td>{producto.precio}</td>
                   <td>{producto.peso}</td>
                   <td>{producto.um}</td>
                   <td>{producto.fabricante?.nombre}</td>
