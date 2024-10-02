@@ -10,24 +10,27 @@ import Footer from "./components/Footer";
 import ServiciosPage from "./pages/ServiciosPage";
 import ClientesPage from "./pages/ClientesPage";
 import ErrorPage from "./pages/ErrorPage";
+import SharedDataProvider from "./contexts/SharedData";
 
 function App() {
   return (
     <>
-      <NavBar />
-      <div className="content">
-        <Routes>
-          <Route path="/" element={<FrontPage />} />
-          <Route path="/productos" element={<ProductsPage />} />
-          <Route path="/fabricantes" element={<FabricantePage />} />
-          <Route path="/proveedores" element={<ProveedorPage />} />
-          <Route path="/grupo-productos" element={<GrupoProductoPage />} />
-          <Route path="/servicios" element={<ServiciosPage />} />
-          <Route path="/clientes" element={<ClientesPage />} />
-          <Route path="*" element={<ErrorPage />} />
-        </Routes>
-      </div>
-      <Footer />
+      <SharedDataProvider>
+        <NavBar />
+        <div className="content">
+          <Routes>
+            <Route path="/" element={<FrontPage />} />
+            <Route path="/productos" element={<ProductsPage />} />
+            <Route path="/fabricantes" element={<FabricantePage />} />
+            <Route path="/proveedores" element={<ProveedorPage />} />
+            <Route path="/grupo-productos" element={<GrupoProductoPage />} />
+            <Route path="/servicios" element={<ServiciosPage />} />
+            <Route path="/clientes" element={<ClientesPage />} />
+            <Route path="*" element={<ErrorPage />} />
+          </Routes>
+        </div>
+        <Footer />
+      </SharedDataProvider>
     </>
   );
 }
