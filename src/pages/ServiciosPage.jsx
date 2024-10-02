@@ -21,7 +21,7 @@ const ServicioPage = () => {
     setServicios(resultado.data);
   };
 
-  const showFormFabricante = (fabricante) => {
+  const showFormServicio = (fabricante) => {
     setSelect(fabricante);
     setModal(true);
   };
@@ -35,7 +35,7 @@ const ServicioPage = () => {
         value={filter}
         onChange={(evt) => setFilter(evt.target.value)}
       />
-      <button onClick={() => showFormFabricante(newServicio)}>Agregar</button>
+      <button onClick={() => showFormServicio(newServicio)}>Agregar</button>
       <table>
         <thead>
           <tr>
@@ -59,7 +59,7 @@ const ServicioPage = () => {
                   <td className="column-name full-width">{servicio.nombre}</td>
                   <td>{servicio.precio}</td>
                   <td>
-                    <button onClick={() => showFormFabricante(servicio)}>
+                    <button onClick={() => showFormServicio(servicio)}>
                       Editar
                     </button>
                   </td>
