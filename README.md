@@ -1,8 +1,21 @@
-# React + Vite
+# FrontOffice SOLID
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Proyecto web para venta
 
-Currently, two official plugins are available:
+### Requisitos
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+-  node v20.14.0
+-  yarn 1.22.22
+-  Tener disponible el puerto 3000
+
+### Instalar dependencias y ejecutar test
+
+```bash
+yarn install
+```
+
+### Levantar servicio
+
+```bash
+yarn dev
+```

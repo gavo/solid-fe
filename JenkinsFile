@@ -1,0 +1,21 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Get Repo') {
+            steps {
+                git 'https://github.com/gavo/solid-fe.git'
+            }
+        }
+        stage('Install dependencies'){
+            steps{
+                bat 'yarn install'
+            }
+        }
+        stage('Deploy'){
+            steps{
+                bat 'yarn dev'
+            }
+        }
+    }
+}
