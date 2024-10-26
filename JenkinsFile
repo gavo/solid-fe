@@ -49,10 +49,9 @@ VITE_API_URL=${URL_BACKEND}/api
             steps {
                 echo "Copiando archivos construidos al directorio ${HTDOCS_DIR}..."
                 bat """
-                if exist "${HTDOCS_DIR}\\*" (
-                    rmdir /S /Q "${HTDOCS_DIR}\\*"
-                )
-                xcopy /E /I /Y build "${HTDOCS_DIR}"
+                rmdir /S /Q "${HTDOCS_DIR}" || echo "No se pudo eliminar ${HTDOCS_DIR}, tal vez no exista aún."
+                mkdir "${HTDOCS_DIR}"
+                xcopy /E /I /Y dist "${HTDOCS_DIR}"
                 """
             }
         }
