@@ -45,7 +45,7 @@ VITE_API_URL=${URL_BACKEND}/api
             }
         }
 
-        stage("Copy to HTDOCS ${HTDOCS_DIR}") {
+        stage('Copy to HTDOCS') {
             steps {
                 echo "Copiando archivos construidos al directorio ${HTDOCS_DIR}..."
                 bat """
