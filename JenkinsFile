@@ -1,20 +1,59 @@
 pipeline {
     agent any
 
+    parameters {
+        string(name: 'URL_BACKEND', defaultValue: 'http://localhost:8080', description: 'Direccion del Backend')
+        string(name: 'HTDOCS_DIR', defaultValue:'c:\\xampp\\htdocs', description: 'PATH de la carpeta htdocs de XAMPP, WAMP orservidor Apaqche que se este utilizando')
+    }
+
     stages {
-        stage('Get Repo') {
+                
+        stage('Cleanup Workspace') {
             steps {
-                git 'https://github.com/gavo/solid-fe.git'
+                echo 'Limpiando el directorio de trabajo...'
+                deleteDir()
             }
         }
+
+        stage('Get Repo') {
+            steps {
+                echo 'Clonando repositorio github'
+                git branch: 'master', url: 'https://github.com/gavo/solid-fe.git'
+            }
+        }
+
         stage('Install dependencies'){
             steps{
                 bat 'yarn install'
             }
         }
-        stage('Deploy'){
+
+        stage('Setup .env file') {
+            steps {
+                script {
+                    def propertiesContent = """
+VITE_API_URL=${URL_BACKEND}/api
+"""
+                    writeFile file: '.env', text: propertiesContent
+                }
+            }
+        }
+
+        stage('Build'){ 
             steps{
-                bat 'yarn dev'
+                bat 'yarn build'
+            }
+        }
+
+        stage("Copy to HTDOCS ${HTDOCS_DIR}") {
+            steps {
+                echo "Copiando archivos construidos al directorio ${HTDOCS_DIR}..."
+                bat """
+                if exist "${HTDOCS_DIR}\\*" (
+                    rmdir /S /Q "${HTDOCS_DIR}\\*"
+                )
+                xcopy /E /I /Y build "${HTDOCS_DIR}"
+                """
             }
         }
     }
