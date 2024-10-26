@@ -57,4 +57,13 @@ VITE_API_URL=${URL_BACKEND}/api
             }
         }
     }
+    
+    post {
+        success {
+            echo 'Pipeline completado exitosamente.'
+        }
+        failure {
+            echo 'El pipeline falló.'
+        }
+    }
 }
