@@ -7,13 +7,6 @@ pipeline {
     }
 
     stages {
-        stage('Cleanup Workspace') {
-            steps {
-                echo 'Limpiando el directorio de trabajo...'
-                deleteDir()
-            }
-        }
-
         stage('Get Repo') {
             steps {
                 echo 'Clonando repositorio desde GitHub'
@@ -22,8 +15,14 @@ pipeline {
         }
 
         stage('Install dependencies') {
-            steps {
-                bat 'yarn install'
+            script {
+                def yarnLockChanged = sh(script: 'git diff --name-only HEAD~1 HEAD | findstr "yarn.lock"', returnStatus: true) == 0
+                if (yarnLockChanged) {
+                    echo 'Nuevo paquete detectado en yarn.lock, ejecutando yarn install...'
+                    bat 'yarn install'
+                } else {
+                    echo 'No se detectaron cambios en yarn.lock. Saltando yarn install...'
+                }
             }
         }
 
